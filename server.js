@@ -14,17 +14,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
-}
-
 app.listen(PORT, (error) => {
-  if (error) throw error;
-  console.log(`Server running on port ${PORT}`);
+  if (error) {
+    console.error("Error starting server:", error);
+  } else {
+    console.log(`Server running on port ${PORT}`);
+  }
 });
 
 app.post("/charge", async (req, res) => {
