@@ -40,3 +40,7 @@ app.post("/charge", async (req, res) => {
     res.status(500).json({ error: "Payment failed" });
   }
 });
+
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
